@@ -9,7 +9,7 @@ from fastai import *
 from fastai.vision import *
 
 model_file_url = 'https://drive.google.com/uc?export=download&id=1BzbdiHIHcpu1Vdj6iJcbsYHKkYoxRaDy'
-model_file_name = 'model'
+model_file_name = 'export'
 classes = ['jason_momoa', 'kal_penn', 'brad_pitt', 'bruce_lee', 'm_pena', 'morgan_freeman', 'will_smith', 'arnold_s', 'jackie_chan', 'dwayne_johnson']
 path = Path(__file__).parent
 
@@ -31,9 +31,9 @@ async def setup_learner():
     # learn = cnn_learner(data_bunch, models.resnet34, pretrained=False)
     # learn.load(model_file_name)
     # return learn
-    await download_file(export_file_url, path/export_file_name)
+    await download_file(model_file_url, path/'models'/f'{model_file_name}.pkl')
     try:
-        learn = load_learner(path, export_file_name)
+        learn = load_learner(path, model_file_name)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
