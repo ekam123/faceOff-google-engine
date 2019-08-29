@@ -31,7 +31,7 @@ async def setup_learner():
     # learn = cnn_learner(data_bunch, models.resnet34, pretrained=False)
     # learn.load(model_file_name)
     # return learn
-    await download_file(model_file_url, path/'models'/model_file_name)
+    await download_file(model_file_url, path/model_file_name)
     try:
         learn = load_learner(path, model_file_name)
         return learn
